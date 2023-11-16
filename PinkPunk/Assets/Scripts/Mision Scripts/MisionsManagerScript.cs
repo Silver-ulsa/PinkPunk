@@ -8,7 +8,7 @@ public class MisionsManagerScript : MonoBehaviour
 
     public DeliveryMenuScript[] deliveryMenuScript;
 
-    void Start()
+    void Update()
     {
         for (int i = 0; i < misiones.Length; i++)
         {
@@ -16,8 +16,6 @@ public class MisionsManagerScript : MonoBehaviour
 
             if (misionDefaultScript != null)
             {
-                Debug.Log("Si entre al if");
-
                 string nameMision = misionDefaultScript.nameMision;
                 string descriptionMision = misionDefaultScript.descriptionMision;
                 string locationMision = misionDefaultScript.locationMision;
@@ -25,23 +23,18 @@ public class MisionsManagerScript : MonoBehaviour
                 GameObject misionQuestMarkStart = misionDefaultScript.misionQuestMarkStart;
                 GameObject misionQuestMarkEnd = misionDefaultScript.misionQuestMarkEnd;
 
-                Debug.Log("Mision: " + nameMision);
-                Debug.Log("Description: " + descriptionMision);
-                Debug.Log("Location: " + locationMision);
-                Debug.Log("Status: " + misionStatus);
-                Debug.Log("Quest Mark Start: " + misionQuestMarkStart);
-                Debug.Log("Quest Mark End: " + misionQuestMarkEnd);
-
+                if (i < deliveryMenuScript.Length && misionStatus)
                 {
-                    if (i < deliveryMenuScript.Length)
-                    {
-                        deliveryMenuScript[i].DisplayMisionInfo(nameMision, descriptionMision, locationMision, misionStatus);
-                    }
-                    else
-                    {
-                        Debug.Log("El objeto " + misiones[i].name + " no tiene el script DeliveryMenuScript adjunto.");
-                    }
+                    deliveryMenuScript[i].DisplayMisionInfo(nameMision, descriptionMision, locationMision, misionStatus);
+                }
+                else if (i < deliveryMenuScript.Length && !misionStatus)
+                {
+                    deliveryMenuScript[i].DisplayMisionInfo("", "", "", false);
+                }
 
+                else
+                {
+                    Debug.Log("El objeto " + misiones[i].name + " no tiene el script DeliveryMenuScript adjunto.");
                 }
             }
             else

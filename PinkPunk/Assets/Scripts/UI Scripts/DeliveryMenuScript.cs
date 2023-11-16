@@ -11,10 +11,22 @@ public class DeliveryMenuScript : MonoBehaviour
     public TMP_Text locationMisionText;
     public TMP_Text misionStatusText;
 
-    public void DisplayMisionInfo(string name, string description, string location, bool status){
+    public GameObject misionContainer;
+
+    public void DisplayMisionInfo(string name, string description, string location, bool status)
+    {
         nameMisionText.text = name;
-        descriptionMisionText.text =description;
+        descriptionMisionText.text = description;
         locationMisionText.text = location;
-        misionStatusText.text = "Status: " + status;
+        if (status)
+        {
+            misionStatusText.text = "En curso";
+            misionContainer.SetActive(true);
+        }
+        else
+        {
+            misionStatusText.text = "";
+            misionContainer.SetActive(false);
+        }
     }
 }
