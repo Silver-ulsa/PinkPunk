@@ -5,8 +5,9 @@ using UnityEngine;
 public class MisionsManagerScript : MonoBehaviour
 {
     public GameObject[] misiones = new GameObject[3];
-
     public DeliveryMenuScript[] deliveryMenuScript;
+    public int misionIndex = 0;
+    public GameObject scren; 
 
     void Update()
     {
@@ -31,7 +32,6 @@ public class MisionsManagerScript : MonoBehaviour
                 {
                     deliveryMenuScript[i].DisplayMisionInfo("", "", "", false);
                 }
-
                 else
                 {
                     Debug.Log("El objeto " + misiones[i].name + " no tiene el script DeliveryMenuScript adjunto.");
@@ -42,5 +42,17 @@ public class MisionsManagerScript : MonoBehaviour
                 Debug.Log("El objeto " + misiones[i].name + " no tiene el script MisionDefaultScript adjunto.");
             }
         }
+
+        if (misionIndex == 3)
+        {
+            scren.SetActive(true);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            scren.SetActive(false);
+        }
+
+        
     }
 }

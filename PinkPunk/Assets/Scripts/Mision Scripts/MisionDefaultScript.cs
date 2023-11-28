@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MisionDefaultScript : MonoBehaviour
 {
+    public int misionIsCompletedIndex = 1;
     public string nameMision;
     public string descriptionMision;
     public string locationMision;
@@ -27,6 +28,7 @@ public class MisionDefaultScript : MonoBehaviour
         {
             misionStatus = false;
             misionIsCompleted = true;
+
         }
     }
 }
